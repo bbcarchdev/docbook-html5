@@ -29,22 +29,19 @@
 	  </xsl:if>
 	</xsl:template>
 
-	<xsl:template name="include-xml">
-	  <xsl:param name="uri" />
-	  <xsl:message>Including source file <xsl:value-of select="$uri" /></xsl:message>
-	  <xsl:copy-of select="document($uri)/include/*" disable-output-escaping="yes" />
-	</xsl:template>
-
 	<!-- HTML5 scripts -->
 	<xsl:template name="html.scripts" />
 
 	<!-- Global navigation -->
+	<xsl:param name="html.navfile" select="''" />
 	<xsl:template name="html.globalnav">
-		<nav class="global"><div class="inner">
-			<ul>
-				<li class="logo"><a href="#"><abbr title="Research &amp; Education Space">RES</abbr></a></li>
-			</ul>
-		</div></nav>			
+		<xsl:if test="normalize-space($html.navfile) != ''">
+			<nav class="global"><div class="inner">
+				<xsl:call-template name="include-xml">
+					<xsl:with-param name="uri" select="$html.navfile" />
+				</xsl:call-template>
+			</div></nav>			
+		</xsl:if>
 	</xsl:template>
 
 	<!-- Masthead -->
@@ -54,4 +51,11 @@
 		]]></xsl:text>
 	</xsl:template>
 
+	<!-- Utilities -->
+	<xsl:template name="include-xml">
+	  <xsl:param name="uri" />
+	  <xsl:message>Including source file <xsl:value-of select="$uri" /></xsl:message>
+	  <xsl:copy-of select="document($uri)/include/*" disable-output-escaping="yes" />
+	</xsl:template>
+	
 </xsl:stylesheet>
