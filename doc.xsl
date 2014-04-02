@@ -54,6 +54,7 @@
 ]]></xsl:text>
 	</xsl:template>
 	
+	<!-- Generate the HTML <body> -->
 	<xsl:template name="html.body">
 		<xsl:param name="kind" />
 		<xsl:param name="title" />
@@ -66,9 +67,11 @@
 			<article>
 				<xsl:apply-templates select="node()" mode="body" />
 			</article>
+			<xsl:call-template name="html.backmatter" />
 		</body>
 	</xsl:template>
 	
+	<!-- Generate any frontmatter -->
 	<xsl:template name="html.frontmatter">
 		<xsl:param name="title" />
 		<xsl:param name="subtitle" />
@@ -86,8 +89,11 @@
 		<xsl:for-each select="db:acknowledgements"><xsl:call-template name="html.titleblock" /></xsl:for-each>
 		<xsl:for-each select="db:toc"><xsl:call-template name="html.toc" /></xsl:for-each>
 	</xsl:template>
-	<xsl:template match="//db:legalnotice|//db:preface|//db:acknowledgements|//db:toc" />
 	
+	<!-- Generate any backmatter -->
+	<xsl:template name="html.backmatter" />
+	
+	<!-- Generate the table of contents -->
 	<xsl:template name="html.toc">
 		<xsl:variable name="title"><xsl:copy-of select="db:title" /></xsl:variable>
 		<nav class="toc">
@@ -97,7 +103,10 @@
 	
 	<!-- Don't emit certain elements -->
 	<xsl:template match="//db:title" mode="body" />
+	<xsl:template match="//db:subtitle" mode="body" />
 	<xsl:template match="//db:info" mode="body" />
 	<xsl:template match="//db:refmeta" mode="body" />
+	<xsl:template match="//db:legalnotice|//db:preface|//db:acknowledgements|//db:toc" mode="body" />
+	
 	
 </xsl:stylesheet>
