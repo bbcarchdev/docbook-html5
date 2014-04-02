@@ -289,8 +289,9 @@
 			<xsl:with-param name="kind" />
 		</xsl:call-template>
 	</xsl:template>
-	
-	<xsl:template match="//db:foreignphrase" mode="body">
+
+	<!-- <foreignphrase>, <firstterm> -->
+	<xsl:template match="//db:foreignphrase|//db:firstterm" mode="body">
 		<xsl:call-template name="html.inline">
 			<xsl:with-param name="element">i</xsl:with-param>
 		</xsl:call-template>
