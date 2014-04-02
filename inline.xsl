@@ -105,15 +105,15 @@
 		</xsl:call-template>
 	</xsl:template>
 	
-	<!-- <markup>, <constant>, <symbol>, <token>, <literal> -->
-	<xsl:template match="//db:markup|//db:constant|//db:symbol|//db:token|//db:literal" mode="body">
+	<!-- <markup>, <constant>, <symbol>, <token>, <literal>, <uri> -->
+	<xsl:template match="//db:markup|//db:constant|//db:symbol|//db:token|//db:literal|//db:uri" mode="body">
 		<xsl:call-template name="html.inline">
 			<xsl:with-param name="element">code</xsl:with-param>
 		</xsl:call-template>
 	</xsl:template>
 	
-	<!-- <email>, <uri> -->
-	<xsl:template match="//db:email|//db:uri" mode="body">
+	<!-- <email> -->
+	<xsl:template match="//db:email" mode="body">
 		<xsl:call-template name="html.inline">
 			<xsl:with-param name="element">span</xsl:with-param>
 		</xsl:call-template>
