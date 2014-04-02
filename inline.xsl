@@ -299,6 +299,16 @@
 	
 	<!-- Technical inlines -->	
 	
+	<!-- Ubiquitious inlines -->
+	
+	<!-- <remark> -->
+	<xsl:template match="//db:remark" mode="body">
+		<xsl:call-template name="html.inline">
+			<xsl:with-param name="element">i</xsl:with-param>
+		</xsl:call-template>
+	</xsl:template>
+	
+	
 	<!-- Inline element output -->
 	<xsl:template match="//db:alt" mode="body"/>
 	
