@@ -96,6 +96,32 @@
 		</xsl:otherwise>
 	  </xsl:choose>
 	</xsl:template>
+	
+	<!-- <segmentedlist> -->
+	<xsl:template match="//db:segmentedlist" mode="body">
+		<table>
+			<thead>
+				<tr>
+					<xsl:for-each select="db:segtitle">
+						<th scope="col">
+							<xsl:apply-templates select="node()" mode="body" />
+						</th>
+					</xsl:for-each>
+				</tr>
+			</thead>
+			<tbody>
+				<xsl:for-each select="db:seglistitem">
+					<tr>
+						<xsl:for-each select="db:seg">
+							<td>
+								<xsl:apply-templates select="node()" mode="body" />
+							</td>
+						</xsl:for-each>
+					</tr>
+				</xsl:for-each>
+			</tbody>
+		</table>
+	</xsl:template>
 
 	<!-- <section>, <chapter>, <part> -->
 	<xsl:template match="//db:section|//db:chapter|//db:part|//db:refsection|//db:refsect1|//db:refsect2|//db:refsect3|//db:refsect4|//db:reference|//db:refsynopsisdiv|//db:refentry" mode="body">
