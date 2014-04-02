@@ -2,6 +2,24 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0" xmlns:db="http://docbook.org/ns" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xlink="http://www.w3.org/1999/xlink">
 	
 	<!-- Bibliography inlines -->
+
+	<!-- <citation> -->
+	<xsl:template match="//db:citation" mode="body">
+		<xsl:text>[</xsl:text>
+		<xsl:call-template name="html.inline">
+			<xsl:with-param name="element">cite</xsl:with-param>
+			<xsl:with-param name="kind" />
+		</xsl:call-template>
+		<xsl:text>]</xsl:text>
+	</xsl:template>
+	
+	<!-- <citetitle> -->
+	<xsl:template match="//db:citetitle" mode="body">
+		<xsl:call-template name="html.inline">
+			<xsl:with-param name="element">cite</xsl:with-param>
+			<xsl:with-param name="kind" />
+		</xsl:call-template>
+	</xsl:template>
 	
 	<!-- Error inlines -->
 	
