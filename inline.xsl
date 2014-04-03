@@ -327,6 +327,37 @@
 		</xsl:call-template>
 	</xsl:template>
 	
+	<!-- People -->
+	
+	<xsl:template match="//db:personname" mode="body">
+		<xsl:if test="db:firstname|db:surname">			
+			<xsl:if test="db:firstname">
+				<xsl:apply-templates select="db:firstname" mode="body" />
+				<xsl:if test="db:surname"><xsl:text> </xsl:text></xsl:if>
+			</xsl:if>
+			<xsl:if test="db:surname">
+				<xsl:apply-templates select="db:surname" mode="body" />
+			</xsl:if>
+			<xsl:if test="db:affiliation">
+				<xsl:text>, </xsl:text>
+			</xsl:if>
+		</xsl:if>
+		<xsl:if test="db:affiliation">
+			<xsl:if test="db:affiliation/db:org">
+				<xsl:choose>
+					<xsl:when test="db:affiliation/db:org/db:uri">
+						<a>
+							<xsl:attribute name="href"><xsl:value-of select="db:affiliation/db:org/db:uri" /></xsl:attribute>
+							<xsl:apply-templates select="db:affiliation/db:org/db:orgname" mode="body" />
+						</a>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:apply-templates select="db:affiliation/db:org/db:orgname" mode="body" />
+					</xsl:otherwise>
+				</xsl:choose>
+			</xsl:if>
+		</xsl:if>
+	</xsl:template>
 	
 	<!-- Inline element output -->
 	<xsl:template match="//db:alt" mode="body"/>

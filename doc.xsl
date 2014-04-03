@@ -101,12 +101,30 @@
 			<xsl:if test="normalize-space($subtitle) != ''">
 				<h2><xsl:value-of select="$subtitle" /></h2>
 			</xsl:if>
+			<xsl:for-each select="db:info/db:edition"><p class="edition"><xsl:apply-templates select="node()" mode="body" /></p></xsl:for-each>
+			<xsl:if test="db:info/db:editor">
+				<p class="editor">
+					<xsl:text>Edited by </xsl:text>
+					<xsl:for-each select="db:info/db:editor">
+						<xsl:if test="position() != 1"><xsl:text>, </xsl:text></xsl:if>
+						<xsl:call-template name="html.person" />
+					</xsl:for-each>
+					<xsl:text>.</xsl:text>
+				</p>
+			</xsl:if>
 		</header>
 		<!-- Use a series of xsl:for-each stanzas to output in a specific order -->
 		<xsl:for-each select="db:info/db:legalnotice"><xsl:call-template name="html.titleblock" /></xsl:for-each>
 		<xsl:for-each select="db:preface"><xsl:call-template name="html.titleblock" /></xsl:for-each>
 		<xsl:for-each select="db:acknowledgements"><xsl:call-template name="html.titleblock" /></xsl:for-each>
 		<xsl:call-template name="html.toc" />
+	</xsl:template>
+	
+	<!-- Emit a person's name -->
+	<xsl:template name="html.person">
+		<xsl:if test="db:personname">
+			<xsl:apply-templates select="db:personname" mode="body" />
+		</xsl:if>
 	</xsl:template>
 	
 	<!-- Generate any backmatter -->
