@@ -24,10 +24,50 @@
 	<xsl:template name="html.toc">
 		<xsl:choose>
 			<xsl:when test="/node()/db:toc">
-				<xsl:message><xsl:text>Table of contents does exist</xsl:text></xsl:message>
+				<xsl:call-template name="html.explicittoc" />
 			</xsl:when>
 			<xsl:otherwise>
 				<xsl:call-template name="html.autotoc" />
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+	
+	<!-- Emit a provided table of contents -->
+	<xsl:template name="html.explicittoc">
+		<nav class="toc">
+			<h1>Table of contents</h1>
+			<ol>
+				<xsl:apply-templates select="/node()/db:toc/*" mode="body" />
+			</ol>
+		</nav>
+	</xsl:template>		
+	
+	<xsl:template match="//db:tocentry" mode="body">
+		<xsl:param name="role" select="@role" />		
+		<li>
+			<xsl:if test="normalize-space($role) != ''"><xsl:attribute name="class"><xsl:value-of select="$role" /></xsl:attribute></xsl:if> 
+			<xsl:apply-templates select="node()" mode="body" />
+		</li>
+	</xsl:template>
+
+	<xsl:template match="//db:tocdiv" mode="body">
+		<xsl:param name="role" select="@role" />		
+		<xsl:param name="title" select="db:title" />
+		<xsl:choose>
+			<xsl:when test="parent::db:toc">
+					<li>
+						<xsl:if test="normalize-space($role) != ''"><xsl:attribute name="class"><xsl:value-of select="$role" /></xsl:attribute></xsl:if>
+						<xsl:value-of select="$title" />
+						<ol>
+							<xsl:apply-templates select="*" mode="body" />
+						</ol>
+					</li>
+			</xsl:when>
+			<xsl:otherwise>		
+				<xsl:value-of select="$title" />
+				<ol>
+					<xsl:apply-templates select="*" mode="body" />
+				</ol>
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
