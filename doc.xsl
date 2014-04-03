@@ -1,4 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+
+ Author: Mo McRoberts <mo.mcroberts@bbc.co.uk>
+
+ Copyright (c) 2014 BBC
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0" xmlns:db="http://docbook.org/ns" xmlns:xi="http://www.w3.org/2001/XInclude">
 
 	<!-- Root element switch -->
@@ -87,26 +106,24 @@
 		<xsl:for-each select="db:info/db:legalnotice"><xsl:call-template name="html.titleblock" /></xsl:for-each>
 		<xsl:for-each select="db:preface"><xsl:call-template name="html.titleblock" /></xsl:for-each>
 		<xsl:for-each select="db:acknowledgements"><xsl:call-template name="html.titleblock" /></xsl:for-each>
-		<xsl:for-each select="db:toc"><xsl:call-template name="html.toc" /></xsl:for-each>
+		<xsl:call-template name="html.toc" />
 	</xsl:template>
 	
 	<!-- Generate any backmatter -->
-	<xsl:template name="html.backmatter" />
-	
-	<!-- Generate the table of contents -->
-	<xsl:template name="html.toc">
-		<xsl:variable name="title"><xsl:copy-of select="db:title" /></xsl:variable>
-		<nav class="toc">
-			<h1><xsl:value-of select="$title" /></h1>
-		</nav>
-	</xsl:template>
-	
+	<xsl:template name="html.backmatter">
+		<!-- Use a series of xsl:for-each stanzas to output in a specific order -->
+		<xsl:for-each select="db:glossary"><xsl:call-template name="html.titleblock" /></xsl:for-each>
+		<xsl:for-each select="db:bibliography"><xsl:call-template name="html.titleblock" /></xsl:for-each>
+		<xsl:for-each select="db:index"><xsl:call-template name="html.titleblock" /></xsl:for-each>
+		<xsl:for-each select="db:colophon"><xsl:call-template name="html.titleblock" /></xsl:for-each>
+	</xsl:template>		
+		
 	<!-- Don't emit certain elements -->
 	<xsl:template match="//db:title" mode="body" />
 	<xsl:template match="//db:subtitle" mode="body" />
 	<xsl:template match="//db:info" mode="body" />
 	<xsl:template match="//db:refmeta" mode="body" />
-	<xsl:template match="//db:legalnotice|//db:preface|//db:acknowledgements|//db:toc" mode="body" />
-	
+	<xsl:template match="//db:legalnotice|//db:preface|//db:acknowledgements|//db:toc|//db:dedication" mode="body" />
+	<xsl:template match="//db:appendix|//db:bibliography|//db:colophon|//db:glossary|//db:index" mode="body" />
 	
 </xsl:stylesheet>

@@ -1,4 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+
+ Author: Mo McRoberts <mo.mcroberts@bbc.co.uk>
+
+ Copyright (c) 2014 BBC
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0" xmlns:db="http://docbook.org/ns" xmlns:xi="http://www.w3.org/2001/XInclude">
 
 	<!-- <para> -->
@@ -175,28 +194,27 @@
 		<xsl:param name="title.element" select="'h1'" />
 		<xsl:param name="subtitle.element" select="'h2'" />
 		<xsl:variable name="classes" select="normalize-space(concat($class, ' ', $role, ' ', $kind))" />
-		<xsl:variable name="title"><xsl:copy-of select="db:title" /></xsl:variable>
-		<xsl:variable name="reftitle"><xsl:copy-of select="db:refmeta/db:refentrytitle" /></xsl:variable>
+		<xsl:variable name="title">
+			<xsl:choose>
+				<xsl:when test="db:title">
+					<xsl:copy-of select="db:title" />
+				</xsl:when>
+				<xsl:when test="db:refmeta/db:refentrytitle">
+					<xsl:copy-of select="db:refmeta/db:refentrytitle" />
+				</xsl:when>
+			</xsl:choose>
+		</xsl:variable>
 		<xsl:variable name="subtitle"><xsl:copy-of select="db:subtitle" /></xsl:variable>
 		<xsl:element name="{$element}">
 			<xsl:if test="$id != ''"><xsl:attribute name="id"><xsl:value-of select="$id" /></xsl:attribute></xsl:if>
 			<xsl:if test="$classes != ''"><xsl:attribute name="class"><xsl:value-of select="$classes" /></xsl:attribute></xsl:if>
-			<xsl:choose>
-				<xsl:when test="normalize-space($title) != ''">
-					<xsl:element name="{$title.element}">
-						<xsl:for-each select="db:title">
-							<xsl:apply-templates select="node()" mode="body" />
-						</xsl:for-each>
-					</xsl:element>
-				</xsl:when>
-				<xsl:when test="normalize-space($reftitle) != ''">
-					<xsl:element name="{$title.element}">
-						<xsl:for-each select="db:refmeta/db:refentrytitle">
-							<xsl:apply-templates select="node()" mode="body" />
-						</xsl:for-each>
-					</xsl:element>					
-				</xsl:when>
-			</xsl:choose>
+			<xsl:if test="normalize-space($title) != ''">
+				<xsl:element name="{$title.element}">
+					<xsl:for-each select="db:title">
+						<xsl:apply-templates select="node()" mode="body" />
+					</xsl:for-each>
+				</xsl:element>
+			</xsl:if>
 			<xsl:if test="normalize-space($subtitle) != ''">
 				<xsl:element name="{$subtitle.element}">
 					<xsl:for-each select="db:subtitle">
