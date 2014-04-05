@@ -35,7 +35,7 @@
 	<!-- HTML5 meta elements -->
 	<xsl:template name="html.meta">
 		<xsl:text disable-output-escaping="yes"><![CDATA[
-			<meta charset="utf-8">
+			<meta charset="utf-8" />
 ]]></xsl:text>
 	</xsl:template>
 
