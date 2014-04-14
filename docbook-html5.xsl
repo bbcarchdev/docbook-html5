@@ -35,8 +35,8 @@
 	<!-- HTML5 meta elements -->
 	<xsl:template name="html.meta">
 		<xsl:text disable-output-escaping="yes"><![CDATA[
-			<meta charset="utf-8" />
 			<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+			<meta charset="utf-8" />
 			<!--[if lt IE 9]><script>document.createElement('header');document.createElement('nav');document.createElement('section');document.createElement('article');document.createElement('aside');document.createElement('footer');</script><![endif]-->
 		]]></xsl:text>
 	</xsl:template>
