@@ -36,7 +36,9 @@
 	<xsl:template name="html.meta">
 		<xsl:text disable-output-escaping="yes"><![CDATA[
 			<meta charset="utf-8" />
-]]></xsl:text>
+			<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+			<!--[if lt IE 9]><script>document.createElement('header');document.createElement('nav');document.createElement('section');document.createElement('article');document.createElement('aside');document.createElement('footer');</script><![endif]-->
+		]]></xsl:text>
 	</xsl:template>
 
 	<!-- HTML5 stylesheets -->
