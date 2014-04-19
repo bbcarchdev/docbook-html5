@@ -145,8 +145,28 @@
 	</xsl:template>
 
 	<!-- <section>, <chapter>, <part> -->
-	<xsl:template match="//db:section|//db:chapter|//db:part|//db:refsection|//db:refsect1|//db:refsect2|//db:refsect3|//db:refsect4|//db:reference|//db:refsynopsisdiv|//db:refentry" mode="body">
+	<xsl:template match="//db:section|//db:chapter|//db:part|//db:refsection|//db:refsect1|//db:refsect2|//db:refsect3|//db:refsect4|//db:reference|//db:refentry" mode="body">
 		<xsl:call-template name="html.titleblock" />
+	</xsl:template>
+	
+	<xsl:template match="//db:refsynopsisdiv" mode="body">
+	  <xsl:param name="role" select="@role" />
+	  <xsl:param name="kind" select="local-name()" />
+	  <xsl:param name="id" select="normalize-space(@xml:id)" />	  
+	  <xsl:variable name="classes" select="normalize-space(concat($role, ' ', $kind))" />
+	  <section class="refsynopsisdiv">
+		<xsl:if test="$id != ''"><xsl:attribute name="id"><xsl:value-of select="$id" /></xsl:attribute></xsl:if>
+		<xsl:if test="$classes != ''"><xsl:attribute name="class"><xsl:value-of select="$classes" /></xsl:attribute></xsl:if>
+		<h1>Synopsis</h1>
+		<xsl:apply-templates select="node()" mode="body" />
+	  </section>
+	</xsl:template>
+
+	<!-- <cmdsynopsis> -->
+	<xsl:template match="//db:cmdsynopsis" mode="body">
+	  <p class="cmdsynopsis"><code>
+		<xsl:apply-templates select="node()" mode="body" />
+	  </code></p>
 	</xsl:template>
 	
 	<!-- <simplesect>, <sectN> -->

@@ -124,7 +124,7 @@
 		</xsl:call-template>
 	</xsl:template>
 	
-	<!-- <markup>, <constant>, <symbol>, <token>, <literal>, <uri> -->
+	<!-- <markup>, <constant>, <symbol>, <token>, <literal>, <uri>, <cmdsynopsis> -->
 	<xsl:template match="//db:markup|//db:constant|//db:symbol|//db:token|//db:literal|//db:uri" mode="body">
 		<xsl:call-template name="html.inline">
 			<xsl:with-param name="element">code</xsl:with-param>
