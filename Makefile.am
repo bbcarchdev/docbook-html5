@@ -14,4 +14,6 @@
 ##  See the License for the specific language governing permissions and
 ##  limitations under the License.
 
-EXTRA_DIST = README.md LICENSE-2.0 nav-sample.xml links-sample.xml *.xsl
+EXTRA_DIST = README.md LICENSE-2.0 buildrules.make \
+	nav-sample.xml links-sample.xml res-links.xml res-nav.xml local.css \
+	index.html 	*.xsl
