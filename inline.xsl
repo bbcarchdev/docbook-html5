@@ -360,7 +360,7 @@
 	</xsl:template>
 	
 	<!-- Inline element output -->
-	<xsl:template match="//db:alt" mode="body"/>
+	<xsl:template match="//db:alt|//db:manvolnum" mode="body"/>
 	
 	<xsl:template name="html.inline">
 		<xsl:param name="element" select="'span'" />

@@ -226,7 +226,16 @@
 				</xsl:when>
 			</xsl:choose>
 		</xsl:variable>
-		<xsl:variable name="subtitle"><xsl:copy-of select="db:subtitle" /></xsl:variable>
+		<xsl:variable name="subtitle">
+		  <xsl:choose>
+			<xsl:when test="db:subtitle">
+			  <xsl:copy-of select="db:subtitle" />
+			</xsl:when>
+			<xsl:when test="db:refnamediv/db:refpurpose">
+			  <xsl:copy-of select="db:refnamediv/db:refpurpose" />
+			</xsl:when>
+		  </xsl:choose>
+		</xsl:variable>
 		<xsl:element name="{$element}">
 			<xsl:if test="$id != ''"><xsl:attribute name="id"><xsl:value-of select="$id" /></xsl:attribute></xsl:if>
 			<xsl:if test="$classes != ''"><xsl:attribute name="class"><xsl:value-of select="$classes" /></xsl:attribute></xsl:if>

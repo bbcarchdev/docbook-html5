@@ -32,7 +32,16 @@
 				</xsl:otherwise>
 			</xsl:choose>
 		</xsl:variable>
-		<xsl:variable name="doc.subtitle"><xsl:copy-of select="/*/db:subtitle" /></xsl:variable>
+		<xsl:variable name="doc.subtitle">
+		  <xsl:choose>
+			<xsl:when test="db:subtitle">
+			  <xsl:copy-of select="db:subtitle" />
+			</xsl:when>
+			<xsl:when test="/db:refentry/db:refnamediv/db:refpurpose">
+			  <xsl:copy-of select="db:refnamediv/db:refpurpose" />
+			</xsl:when>
+		  </xsl:choose>
+		</xsl:variable>
 		<xsl:call-template name="html.doctype" />
 		<xsl:text disable-output-escaping="yes"><![CDATA[
 <html>
