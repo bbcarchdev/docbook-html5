@@ -168,7 +168,46 @@
 		<xsl:apply-templates select="node()" mode="body" />
 	  </code></p>
 	</xsl:template>
-	
+
+	<!-- <funcsynopsis> -->	
+	<xsl:template match="//db:funcsynopsis" mode="body">
+	  <div class="funcsynopsis">
+		<xsl:apply-templates select="node()" mode="body" />
+	  </div>
+	</xsl:template>
+
+	<!-- <funcsynopsisinfo> -->
+	<xsl:template match="//db:funcsynopsisinfo" mode="body">
+	  <p class="funcsynopsisinfo"><code>
+		<xsl:apply-templates select="node()" mode="body" />
+	  </code></p>
+	</xsl:template>
+
+	<xsl:template match="//db:funcprototype" mode="body">
+	  <p class="funcprototype"><code>
+		<xsl:apply-templates select="db:modifier" mode="body" />
+		<xsl:apply-templates select="db:funcdef" mode="body" />
+		<xsl:text>(</xsl:text>
+		<xsl:for-each select="db:paramdef|db:varargs|db:void">
+		  <xsl:apply-templates select="." mode="body" />
+		  <xsl:if test="position() != last()">
+			<xsl:text>, </xsl:text>
+		  </xsl:if>
+		</xsl:for-each>
+		<xsl:text>)</xsl:text>
+		<xsl:apply-templates select="db:modifier" mode="body" />
+		<xsl:text>;</xsl:text>
+	  </code></p>
+	</xsl:template>
+
+	<xsl:template match="//db:void" mode="body">
+	  <code class="void"><xsl:text>void</xsl:text></code>
+	</xsl:template>
+
+	<xsl:template match="//db:varargs" mode="body">
+	  <code class="varargs"><xsl:text>…</xsl:text></code>
+	</xsl:template>
+
 	<!-- <simplesect>, <sectN> -->
 	<xsl:template match="//db:simplesect|//db:sect1|//db:sect2|//db:sect3|//db:sect4|//db:sect5" mode="body">
 		<xsl:call-template name="html.titleblock">
