@@ -14,12 +14,22 @@
 ##  See the License for the specific language governing permissions and
 ##  limitations under the License.
 
-all: index.html
+PACKAGE = res-website/docbook-html5
+
+sysconfdir ?= /etc
+webdir ?= /var/www
+
+INSTALL ?= install
 
 XSLT = docbook-html5.xsl \
 	block.xsl doc.xsl inline.xsl toc.xsl
 
 XSLTPROC ?= xsltproc
+
+FILES = $(XSLT) docbook-html5.xml LICENSE-2.0 index.html local.css \
+	res-links.xml res-nav.xml nav-sample.xml links-sample.xml
+
+all: index.html
 
 index.html: docbook-html5.xml $(XSLT) res-links.xml res-nav.xml
 	$(XSLTPROC) --nonet --xinclude \
@@ -28,3 +38,8 @@ index.html: docbook-html5.xml $(XSLT) res-links.xml res-nav.xml
 		--param "html.ie78css" "'http://bbcarchdev.github.io/painting-by-numbers/ie78.css'" \
 		--output $@ \
 		docbook-html5.xsl $<
+
+install: $(FILES)
+	$(INSTALL) -m 755 -d $(DESTDIR)$(webdir)/$(PACKAGE)
+	for i in $(FILES) ; do $(INSTALL) -m 644 $$i $(DESTDIR)$(webdir)/$(PACKAGE) ; done
+
