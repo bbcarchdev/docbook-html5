@@ -14,6 +14,9 @@
 ##  See the License for the specific language governing permissions and
 ##  limitations under the License.
 
+## These are the make rules for building this tree as part of the RES
+## website - https://bbcarchdev.github.io/res/
+
 PACKAGE = res-website/docbook-html5
 
 sysconfdir ?= /etc
