@@ -34,6 +34,9 @@ FILES = $(XSLT) docbook-html5.xml LICENSE-2.0 index.html local.css \
 
 all: index.html
 
+clean:
+	rm -f index.html
+
 index.html: docbook-html5.xml $(XSLT) res-links.xml res-nav.xml
 	$(XSLTPROC) --nonet --xinclude \
     	--param "html.linksfile" "'`pwd`/res-links.xml'" \
