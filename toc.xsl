@@ -88,7 +88,7 @@
 							<xsl:for-each select="db:section|db:chapter|db:part|db:refsection|db:refsect1|db:refsect2|db:refsect3|db:refsect4|db:reference|db:refsynopsisdiv|db:refentry">
 								<xsl:call-template name="html.toc.entry" />
 							</xsl:for-each>
-							<xsl:for-each select="db:glossary|db:bibliography|db:index|db:colophon">
+							<xsl:for-each select="db:glossary|db:bibliography|db:index|db:colophon|db:appendix">
 								<xsl:call-template name="html.toc.entry">
 									<xsl:with-param name="class" select="'backmatter'" />
 								</xsl:call-template>

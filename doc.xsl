@@ -139,11 +139,12 @@
 	<!-- Generate any backmatter -->
 	<xsl:template name="html.backmatter">
 		<!-- Use a series of xsl:for-each stanzas to output in a specific order -->
+		<xsl:for-each select="db:appendix"><xsl:call-template name="html.titleblock" /></xsl:for-each>
 		<xsl:for-each select="db:glossary"><xsl:call-template name="html.titleblock" /></xsl:for-each>
 		<xsl:for-each select="db:bibliography"><xsl:call-template name="html.titleblock" /></xsl:for-each>
 		<xsl:for-each select="db:index"><xsl:call-template name="html.titleblock" /></xsl:for-each>
 		<xsl:for-each select="db:colophon"><xsl:call-template name="html.titleblock" /></xsl:for-each>
-	</xsl:template>		
+	</xsl:template>
 		
 	<!-- Don't emit certain elements -->
 	<xsl:template match="//db:title" mode="body" />
