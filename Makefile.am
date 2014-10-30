@@ -14,6 +14,18 @@
 ##  See the License for the specific language governing permissions and
 ##  limitations under the License.
 
-EXTRA_DIST = README.md LICENSE-2.0 buildrules.make \
+DB5FILES = \
 	nav-sample.xml links-sample.xml res-links.xml res-nav.xml local.css \
-	index.html 	*.xsl
+	docbook-html5.xml \
+	docbook-html5.xsl doc.xsl block.xsl inline.xsl toc.xsl
+
+EXTRA_DIST = README.md LICENSE-2.0 $(DB5FILES)
+
+if INSTALL_DOCBOOK_HTML5
+
+dbh5htdoc_DATA = $(DB5FILES) index.html
+
+index.html: $(srcdir)/docbook-html5.xml $(XSLTFILES) $(NAV) $(LINKS)
+	$(XML2HTML) $<
+
+endif
