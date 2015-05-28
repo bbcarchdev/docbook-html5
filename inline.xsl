@@ -359,6 +359,21 @@
 		</xsl:if>
 	</xsl:template>
 	
+	<!-- mediaobject -->
+	<xsl:template match="//db:mediaobject" mode="body">
+		<xsl:for-each select="node()">
+			<xsl:choose>
+				<xsl:when test="namespace-uri() = 'http://docbook.org/ns' and local-name() = 'imageobject'">
+					<xsl:for-each select="db:imagedata">
+						<img>
+							<xsl:attribute name="src"><xsl:value-of select="@fileref" /></xsl:attribute>
+						</img>
+					</xsl:for-each>
+				</xsl:when>
+			</xsl:choose>
+		</xsl:for-each>
+	</xsl:template>
+	
 	<!-- Inline element output -->
 	<xsl:template match="//db:alt|//db:manvolnum" mode="body"/>
 	

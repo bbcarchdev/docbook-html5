@@ -143,6 +143,25 @@
 			</table>
 		</div>
 	</xsl:template>
+	
+	<!-- <figure> -->
+	<xsl:template match="//db:figure" mode="body">
+		<xsl:param name="role" select="@role" />
+		<xsl:param name="pgwide" select="@pgwide" />
+		<xsl:param name="float" select="@float" />
+		<xsl:variable name="pgwideclass">
+			<xsl:if test="$pgwide = '1'">full</xsl:if>
+		</xsl:variable>
+		<xsl:variable name="classes" select="normalize-space(concat($pgwideclass, ' ', $role))" />
+			
+		<figure>
+			<xsl:if test="$classes != ''"><xsl:attribute name="class"><xsl:value-of select="$classes" /></xsl:attribute></xsl:if>
+			<xsl:apply-templates select="node()" mode="body" />
+			<xsl:for-each select="db:title">
+				<figcaption><xsl:copy-of select="node()" /></figcaption>
+			</xsl:for-each>
+		</figure>
+	</xsl:template>
 
 	<!-- <section>, <chapter>, <part> -->
 	<xsl:template match="//db:section|//db:chapter|//db:part|//db:refsection|//db:refsect1|//db:refsect2|//db:refsect3|//db:refsect4|//db:reference|//db:refentry" mode="body">
