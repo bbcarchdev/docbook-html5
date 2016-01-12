@@ -19,11 +19,10 @@
 
 -->
 <include>
-	<ul>
-		<li class="logo"><a href="/res/"><abbr title="Research &amp; Education Space">RES</abbr></a></li>
-		<li><a href="/res/education">Education</a></li>
-		<li><a href="/res/collections">Collections</a></li>
-		<li><a href="/res/products">Products</a></li>
-		<li><a href="/res/faq">FAQ</a></li>
-	</ul>
+  <ul>
+    <li><a href="/res/guides">Guides</a></li>
+    <li><a href="http://acropolis.org.uk">Developer API</a></li>
+    <li><a href="/res/tools">Tools</a></li>
+    <li><a href="/res/code">Source code</a></li>
+  </ul>
 </include>
