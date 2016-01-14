@@ -64,7 +64,14 @@
 	</xsl:template>
 
 	<!-- HTML5 scripts -->
-	<xsl:template name="html.scripts" />
+	<xsl:param name="html.script" select="''" />
+	<xsl:template name="html.scripts">
+  	  <xsl:if test="normalize-space($html.script) != ''">
+		<xsl:text disable-output-escaping="yes"><![CDATA[<script src="]]></xsl:text>
+		<xsl:value-of select="$html.script" />
+		<xsl:text disable-output-escaping="yes"><![CDATA["></script>]]></xsl:text>
+	</xsl:if>
+</xsl:template>
 
 	<!-- Global navigation -->
 	<xsl:param name="html.navfile" select="''" />
