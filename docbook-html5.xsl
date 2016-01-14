@@ -44,6 +44,7 @@
 	<!-- HTML5 stylesheets -->
 	<xsl:param name="html.linksfile" select="''" />
 	<xsl:param name="html.ie78css" select="''" />
+	<xsl:param name="html.ie78script" select="''" />
 	<xsl:template name="html.links">
 	  <xsl:if test="normalize-space($html.linksfile) != ''">
 		<xsl:call-template name="include-xml">
@@ -54,6 +55,11 @@
 		  <xsl:text disable-output-escaping="yes"><![CDATA[<!--[if lt IE 9]><link rel="stylesheet" type="text/css" href="]]></xsl:text>
 		  <xsl:value-of select="$html.ie78css" />
 		  <xsl:text disable-output-escaping="yes"><![CDATA[" /><![endif]-->]]></xsl:text>
+	  </xsl:if>
+	  <xsl:if test="normalize-space($html.ie78script) != ''">
+		  <xsl:text disable-output-escaping="yes"><![CDATA[<!--[if lt IE 9]><script src="]]></xsl:text>
+		  <xsl:value-of select="$html.ie78script" />
+		  <xsl:text disable-output-escaping="yes"><![CDATA["></script><![endif]-->]]></xsl:text>
 	  </xsl:if>
 	</xsl:template>
 
