@@ -72,6 +72,17 @@
 		</xsl:if>
 	</xsl:template>
 
+	<xsl:param name="html.subnavfile" select="''" />
+	<xsl:template name="html.subnav">
+		<xsl:if test="normalize-space($html.subnavfile) != ''">
+			<nav class="secondarynav"><div class="inner">
+				<xsl:call-template name="include-xml">
+					<xsl:with-param name="uri" select="$html.subnavfile" />
+				</xsl:call-template>
+			</div></nav>			
+		</xsl:if>
+	</xsl:template>
+
 	<!-- Masthead -->
 	<xsl:template name="html.masthead">
 		<xsl:text disable-output-escaping="yes"><![CDATA[
