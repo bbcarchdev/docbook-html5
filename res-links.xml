@@ -19,7 +19,7 @@
 
 -->
 <include>
-    <link rel="stylesheet" type="text/css" href="//bbcarchdev.github.io/painting-by-numbers/style.css" />
+    <link rel="stylesheet" type="text/css" href="/painting-by-numbers/style.css" />
     <link rel="stylesheet" type="text/css" href="//bbcarchdev.github.io/painting-by-numbers/print.css" media="print" />
     <link rel="stylesheet" type="text/css" href="//cloud.typography.com/6699852/732262/css/fonts.css" />
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,500,300italic,500italic|Inconsolata|Arapey" />
