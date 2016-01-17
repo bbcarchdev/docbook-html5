@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 
- Author: Mo McRoberts <mo.mcroberts@bbc.co.uk>
+ Author: Benn Pearson <benn.pearson@bbc.co.uk>
 
- Copyright (c) 2014 BBC
+ Copyright (c) 2015 BBC
 
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -20,9 +20,9 @@
 -->
 <include>
   <ul>
-    <li><a href="/res/guides">Guides</a></li>
+    <li><a href="https://bbcarchdev.github.io/res/guides">Guides</a></li>
     <li><a href="http://acropolis.org.uk">Developer API</a></li>
-    <li><a href="/res/tools">Tools</a></li>
-    <li><a href="/res/code">Source code</a></li>
+    <li><a href="https://bbcarchdev.github.io/res/tools">Tools</a></li>
+    <li><a href="https://bbcarchdev.github.io/res/code">Source code</a></li>
   </ul>
 </include>
