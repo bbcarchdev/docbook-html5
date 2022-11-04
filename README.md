@@ -32,7 +32,4 @@ prefix to a local path.
 
 With both parameters, a full processing command might be:
 
-`xsltproc --xinclude  --param html.linksfile "'file:///path/to/links.xml'" --param html.navfile "'file:///path/to/nav.xml'" /path/or/url/to/docbook-html5.xsl source.xml > dest.html`
-
-(Note that double-quoting is used to ensure that the actual quotation marks
-are passed to `xsltproc` to indicate that the parameter value is a string).
+`xsltproc --xinclude  --stringparam html.linksfile "file:///path/to/links.xml" --stringparam html.navfile "file:///path/to/nav.xml" /path/or/url/to/docbook-html5.xsl source.xml > dest.html`
