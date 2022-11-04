@@ -8,11 +8,15 @@ easier to modify than the official XSL package.
 
 To use remotely:
 
-`xsltproc --xinclude http://bbcarchdev.github.io/docbook-html5/docbook-html5.xsl source.xml > dest.html`
+```
+xsltproc --xinclude http://bbcarchdev.github.io/docbook-html5/docbook-html5.xsl source.xml > dest.html
+```
 
 Or, if you have a local copy (for example, as a git submodule):
 
-`xsltproc --nonet --xinclude /path/to/docbook-html5.xsl source.xml > dest.html`
+```
+xsltproc --nonet --xinclude /path/to/docbook-html5.xsl source.xml > dest.html
+```
 
 There are currently two parameters supported:
 
@@ -32,4 +36,6 @@ prefix to a local path.
 
 With both parameters, a full processing command might be:
 
-`xsltproc --xinclude  --stringparam html.linksfile "file:///path/to/links.xml" --stringparam html.navfile "file:///path/to/nav.xml" /path/or/url/to/docbook-html5.xsl source.xml > dest.html`
+```
+xsltproc --xinclude  --stringparam html.linksfile "file:///path/to/links.xml" --stringparam html.navfile "file:///path/to/nav.xml" /path/or/url/to/docbook-html5.xsl source.xml > dest.html
+```
